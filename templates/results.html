@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Query Results</title>
+</head>
+
+   
+    <h1>Query Results</h1>
+    <body>
+    <button onclick="window.location.href='/restart'">Start Over</button> 
+    <br><br>
+    
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+          
+        th {
+            background-color: #294089; /* Replace with your desired color code */
+            color: #ffffff; /* Replace with your desired text color */
+        }, 
+        
+        td {
+            text-align: left;
+            padding: 8px;
+            border: 5px solid black;
+            border-collapse: collapse;
+        }
+          
+        tr:nth-child(even) {
+            background-color: rgb(202, 204, 209);
+        }
+    </style>
+
+    <table CELLSPACING=10>
+        <tr>
+            <th align="left">Time</th>
+            <th align="left">Source</th>
+            <th align="left">Destination</th>
+            <th align="left">From Zone</th>
+            <th align="left">To Zone</th>
+            <th align="left">Source Port</th>
+            <th align="left">Dest Port</th>
+            <th align="left">Protocol</th>
+            <th align="left">Action</th>
+            <th align="left">Total Bytes</th>
+        </tr>
+        {% for entry in entries %}
+        <tr>
+            <td align="left">{{ entry.find('receive_time').text }}</td>
+            <td align="left">{{ entry.find('src').text }}</td>
+            <td align="left">{{ entry.find('dst').text }}</td>
+            <td align="left">{{ entry.find('from').text }}</td>
+            <td align="left">{{ entry.find('to').text }}</td>
+            <td align="left">{{ entry.find('sport').text }}</td>
+            <td align="left">{{ entry.find('dport').text }}</td>
+            <td align="left">{{ entry.find('proto').text }}</td>
+            <td align="left">{{ entry.find('action').text }}</td>
+            <td align="left">{{ entry.find('bytes').text }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    
+    </body>
+</html>
+
+
+
+
+

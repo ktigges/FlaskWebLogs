@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+ <head><title>Query Parameters</title></head>
+ 
+
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+  
+        
+
+        <div class="container">
+        <form class="centered-form" method="POST" action="{{ url_for('index') }}">
+            {{ form.csrf_token }}
+            <b><center>Search Criteria - Panorama IP : {{ pano_ip }}</center></b><br><br>
+            {{ form.f_ip_address.label }} {{ form.f_ip_address(size=15) }} <br><br>
+            {{ form.f_end_date.label }} {{ form.f_end_date(size=19) }} <br><br>
+            {{ form.f_minutes.label }} {{ form.f_minutes(size=4) }} <br><br>
+            {{ form.f_port.label }} {{ form.f_port(size=4) }} <br><br>
+            {{ form.f_submit() }}
+        
+        </form>
+    
+        </div>
+  
+        
+</html>
