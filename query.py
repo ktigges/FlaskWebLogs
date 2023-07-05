@@ -1,4 +1,8 @@
-# query.py
+# Date:     06/20/2026  
+# Updated:  07/05 - Modified form and updated query logic
+# Version:  0.2
+#
+# query.py - Imported into main logic script - not stand alone
 #
 import requests
 # Uncomment pdb to set debug trace

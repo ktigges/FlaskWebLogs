@@ -1,7 +1,8 @@
 # Script:   panologquery.py
 # Author:   Kevin Tigges
 # Date:     06/20/2026  
-# Version:  0.1
+# Updated:  07/05 - Modified form and updated query logic
+# Version:  0.2
 #
 # Script will make API calls to panorama to 
 

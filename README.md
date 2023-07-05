@@ -1,3 +1,6 @@
+Updated 07/05 - Changed form to have source/dest ip addresses, and a date picker with time fields.  Updated query logic to include additional fields
+
+
 Script with a web front end that queries panorama traffic logs and displays results
 This script uses Flask and the WTForms framework to display input fields and render the results
 For this script to run we need some pre-requisites
@@ -10,15 +13,19 @@ cffi==1.15.1
 charset-normalizer==3.1.0
 click==8.1.3
 cryptography==41.0.1
+dominate==2.8.0
 Flask==2.3.2
+Flask-Bootstrap==3.3.7.1
 Flask-WTF==1.1.1
 idna==3.4
 itsdangerous==2.1.2
 Jinja2==3.1.2
 MarkupSafe==2.1.3
 pycparser==2.21
+python-dotenv==1.0.0
 requests==2.31.0
 urllib3==2.0.3
+visitor==0.1.3
 Werkzeug==2.3.6
 WTForms==3.0.1
 
