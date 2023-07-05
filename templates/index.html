@@ -8,12 +8,15 @@
         
 
         <div class="container">
-        <form class="centered-form" method="POST" action="{{ url_for('index') }}">
+        <form class="centered-form" method="POST" name="queryform" action="{{ url_for('index') }}">
             {{ form.csrf_token }}
             <b><center>Search Criteria - Panorama IP : {{ pano_ip }}</center></b><br><br>
-            {{ form.f_ip_address.label }} {{ form.f_ip_address(size=15) }} <br><br>
-            {{ form.f_end_date.label }} {{ form.f_end_date(size=19) }} <br><br>
-            {{ form.f_minutes.label }} {{ form.f_minutes(size=4) }} <br><br>
+            {{ form.f_source_ip_address.label }} {{ form.f_source_ip_address(size=15) }} (Blank for ANY)<br><br>
+            {{ form.f_dest_ip_address.label }} {{ form.f_dest_ip_address(size=15) }} <br> <br>
+            {{ form.f_start_date.label }} {{ form.f_start_date(class='datepicker') }} {{ form.hidden_tag() }} <br><br>
+            {{ form.f_start_time.label }} {{ form.f_start_time(size=5) }} (HH:MM)<br> <br>
+            {{ form.f_end_date.label }} {{ form.f_end_date(class='datepicker') }} {{ form.hidden_tag() }} <br><br>
+            {{ form.f_end_time.label }} {{ form.f_end_time(size=5) }} (HH:MM)<br> <br>
             {{ form.f_port.label }} {{ form.f_port(size=4) }} <br><br>
             {{ form.f_submit() }}
         
@@ -21,5 +24,5 @@
     
         </div>
   
-        
+          
 </html>

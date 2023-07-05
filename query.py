@@ -100,18 +100,21 @@ def getjobid(txtresponse):
         i = i + 1
     return(jobid)
 
-def query_logs(api_key, panorama_ip, start_time, end_time, ip1, dport):
+def query_logs(api_key, panorama_ip, source_ip, destination_ip, start_time, end_time, dport):
     # Build the API request URL
-    # pdb.set_trace()
-    if (dport == 'all'):
-        query = f"(receive_time geq '{start_time}' and receive_time leq '{end_time}') and (src eq {ip1} or dst eq {ip1})"
-    else:
-        query = f"(receive_time geq '{start_time}' and receive_time leq '{end_time}') and (src eq {ip1} or dst eq {ip1}) and dport eq {dport}"
+    
+    query = f"receive_time geq '{start_time})' and receive_time leq '{end_time}'"
 
+    if (source_ip):
+        query += f" and src eq {source_ip}"
+    if (destination_ip):
+        query += f" and des eq {destination_ip}"
+    if (not dport == 'all'):
+        query += f" and dport eq {dport}"
+    
     url = f'https://{panorama_ip}/api/?type=log&log-type=traffic&nlogs=1000&query={query}'
 
     response = requests.post(url, headers = returnheader(api_key), verify=False)
-    
     # Check the API response status as well as the code returned.  19 will be job enqueued, anything else we don't want to run as there is an error
     if (response.status_code == 200 and str(response.content).find('code="19"')) > 0:
         return(response)
@@ -139,7 +142,7 @@ def get_status(api_key, panorama_ip, jobid):
 
 
 
-def main(panorama_ip, end_time, minutes, ip1, port):
+def main(panorama_ip, source_ip, destination_ip, start_time, end_time,  port):
     api_key = get_api()
     # panorama_ip = "192.168.254.5"
 
@@ -147,16 +150,16 @@ def main(panorama_ip, end_time, minutes, ip1, port):
 
     # Get the start / end times based on minutes sent, and convert to string
     
-    start_time = end_time - timedelta(minutes = minutes)
+    # start_time = end_time - timedelta(minutes = minutes)
     
-    start_time = start_time.strftime("%Y/%m/%d %H:%M:%S")
-    end_time = end_time.strftime("%Y/%m/%d %H:%M:%S")
+    # start_time = start_time.strftime("%Y/%m/%d %H:%M:%S")
+    # end_time = end_time.strftime("%Y/%m/%d %H:%M:%S")
  
     jobid = ""
 
     try:
      
-       response = query_logs(api_key, panorama_ip, start_time, end_time, ip1, port)
+       response = query_logs(api_key, panorama_ip, source_ip, destination_ip, start_time, end_time, port)
        jobid = getjobid(response.text)
 
        print('Query Queued : Job ID ' + jobid + '\n')
