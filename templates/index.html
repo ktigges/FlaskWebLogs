@@ -8,8 +8,12 @@
         
 
         <div class="container">
-        <form class="centered-form" method="POST" name="queryform" action="{{ url_for('index') }}">
+        <form class="centered-form" method="POST" name="queryform" action="{{ url_for('index') }}" onsubmit="showPleaseWait()">
             {{ form.csrf_token }}
+            <div id="pleasewait" style="display:none" class="status-div">
+                <p><center>Running Query<br><br>Please Wait.....</center></p>
+            </div>
+            
             <b><center>Search Criteria - Panorama IP : {{ pano_ip }}</center></b><br><br>
             {{ form.f_source_ip_address.label }} {{ form.f_source_ip_address(size=15) }} (Blank for ANY)<br><br>
             {{ form.f_dest_ip_address.label }} {{ form.f_dest_ip_address(size=15) }} <br> <br>
@@ -21,8 +25,20 @@
             {{ form.f_submit() }}
         
         </form>
+           
     
         </div>
   
-          
+        <script>
+            function showPleaseWait() {
+                document.getElementById('pleasewait').style.display = 'block';
+            }
+    
+              
+            function hidePleaseWait() {
+                document.getElementById('pleasewait').style.display = 'none';
+            }
+    
+         
+        </script>     
 </html>

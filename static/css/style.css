@@ -52,3 +52,16 @@
 .loading::after {
     content: "Please wait...";
 }
+
+.status-div {
+  border: 2px solid;
+  background-color: cyan;
+  color: black;
+  position: absolute;
+  text-justify: center;
+  transform: translate(110%,110%);
+  box-shadow: 5px 5px grey;
+  width: 100px;
+  padding: 20px;
+  overflow: hidden;
+}

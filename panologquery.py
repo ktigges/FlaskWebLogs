@@ -72,7 +72,9 @@ def index():
 @app.route('/restart', methods=['GET', 'POST'])
 def restart():
     return redirect(url_for('index'))
-    
+
+@app.route('/restart2', methods=['GET', 'POST'])    
+    return redirect(url_for('index'))
 
 if __name__ == '__main__':
     app.run()
