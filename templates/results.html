@@ -4,11 +4,12 @@
     <title>Query Results</title>
 </head>
 
-   
+   <form method="POST" action="{{ url_for('restart') }}"">
     <h1>Query Results</h1>
     <body>
-    <button onclick="window.location.href='/restart'">Start Over - default</button> 
-    <button onclick="window.location.href='/restart'">Start Over - keep values</button> 
+    <button type="submit" name="button" value="clear_values">Restart - Clear Values</button> 
+    <button type="submit" name="button" value="keep_values">Restart - Keep Values</button> 
+    
     <br><br>
     
     <style>
@@ -64,6 +65,7 @@
     </table>
     
     </body>
+    </form>
 </html>
 
 

@@ -107,12 +107,12 @@ def getjobid(txtresponse):
 def query_logs(api_key, panorama_ip, source_ip, destination_ip, start_time, end_time, dport):
     # Build the API request URL
     
-    query = f"receive_time geq '{start_time})' and receive_time leq '{end_time}'"
+    query = f"receive_time geq '{start_time}' and receive_time leq '{end_time}'"
 
     if (source_ip):
         query += f" and src eq {source_ip}"
     if (destination_ip):
-        query += f" and des eq {destination_ip}"
+        query += f" and dst eq {destination_ip}"
     if (not dport == 'all'):
         query += f" and dport eq {dport}"
     
