@@ -1,4 +1,5 @@
-Updated 07/05 - Changed form to have source/dest ip addresses, and a date picker with time fields.  Updated query logic to include additional fields
+Updated 07/05/23 - Changed form to have source/dest ip addresses, and a date picker with time fields.  Updated query logic to include additional fields
+Update 07/19/23  - Updated logic to allow resetting field values or keeping field values for another query
 
 
 Script with a web front end that queries panorama traffic logs and displays results
@@ -90,7 +91,7 @@ To run the script
     5. If using SSL, then make sure you have a cert.pem and cert.key for this app
     6. get your panorama API key (use google to find out how to get this), and place it in the api.txt file (that you need to create)
     6. run python3 ./encrypt_api.py and it will create the api key files needed
-    7. run the app and see if it works -- python3 ./
+    7. run the app and see if it works -- (You can run this with flask run)
 
 
 You can also run this in a docker container using the following dockerfile or your own modified version:
@@ -98,15 +99,11 @@ You can also run this in a docker container using the following dockerfile or yo
 # syntax=docker/dockerfile:1
 
 FROM python:3.9-slim-buster
-
 WORKDIR /panologquery
-
 COPY requirements.txt requirements.txt
 RUN pip3 install -r requirements.txt
-
 COPY . .
 EXPOSE 5300
-
 CMD ["python3", "-m", "flask", "run"]
 
 
