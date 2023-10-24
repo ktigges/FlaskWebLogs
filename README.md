@@ -47,7 +47,7 @@ App Folder
     panologquery.py
     query.py
     .flaskenv
-
+    config.options
 
 The script uses an API key to make request calls to Panorama
 
@@ -57,19 +57,38 @@ level encryption, it does keep the key from prying eyes if they have access to t
 To create the encrypted API key combination, place the API key in a file called api.txt, then just run the encrypt_api.py script and it will generate 2 files
 apikey.txt and apipass.txt that will be used in the program.  It will delete the api.txt file once completed.
 
-There is a file called config.options that contains 2 entries
+There is a file called config.options that contains 1 entry
     The Panorama IP we will be querying
-    Do we want to enable SSL to the web front end
 
     The format is scrict and should be as follows in the order below:
 
         panorama_ip=192.168.254.5
      
+There is a flask configuration file .flaskenv with the following defaults:
 
-If SSL encryption is to be used, you will need to place your certificate and private key in PEM format in the program directory, and name them cert.pem and key.pem
-    You can use self signed or a CA issued cert.  If you don't know how to generate a public/private key pair - then google that
+#program to run
+FLASK_APP=panologquery
+#Certificate and Private key to use for SSL
+FLASK_RUN_CERT=cert.pem
+FLASK_RUN_KEY=key.pem
+#allow debug messages and debugging within app
+FLASK_ENV=development
+FLASK_DEBUG=True
+#Certificate Info (Again)
+FLASK_RUN_SSL_CERT=cert.pem
+FLASK_RUN_SSL_KEY=key.pem
+#Listen on all IP's
+FLASK_RUN_HOST=0.0.0.0
+#Port to run on 
+FLASK_RUN_PORT=5300
+#Redirect on SSL
+FLASK_RUN_SSL_REDIRECT=True
 
 Modify the .flaskenv file to match your preferences for SSL, Port and Listening IP.  You can set debug here as well if needed.
+
+You will need to place your certificate and private key in PEM format in the program directory, and name them cert.pem and key.pem
+    You can use self signed or a CA issued cert.  If you don't know how to generate a public/private key pair - then google that
+
 
 The program in it's current state, takes 4 options
 

@@ -7,11 +7,13 @@
    <form method="POST" action="{{ url_for('restart') }}"">
     <h1>Query Results</h1>
     <body>
+    <br>
     <button type="submit" name="button" value="clear_values">Restart - Clear Values</button> 
     <button type="submit" name="button" value="keep_values">Restart - Keep Values</button> 
     
-    <br><br>
+    <br><br><br>
     
+
     <style>
         table {
             border-collapse: collapse;
@@ -44,9 +46,12 @@
             <th align="left">To Zone</th>
             <th align="left">Source Port</th>
             <th align="left">Dest Port</th>
+            <th align="left">Application</th>
             <th align="left">Protocol</th>
             <th align="left">Action</th>
             <th align="left">Total Bytes</th>
+            <th align="left">Device</th>
+            <th aligh="left">Policy ID</th>
         </tr>
         {% for entry in entries %}
         <tr>
@@ -57,9 +62,12 @@
             <td align="left">{{ entry.find('to').text }}</td>
             <td align="left">{{ entry.find('sport').text }}</td>
             <td align="left">{{ entry.find('dport').text }}</td>
+            <td align="left">{{ entry.find('app').text }}</td>
             <td align="left">{{ entry.find('proto').text }}</td>
             <td align="left">{{ entry.find('action').text }}</td>
             <td align="left">{{ entry.find('bytes').text }}</td>
+            <td align="left">{{ entry.find('device_name').text }}</td>
+            <td align="left">{{ entry.find('policy_id').text }}</td>
         </tr>
         {% endfor %}
     </table>

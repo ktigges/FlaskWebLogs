@@ -7,12 +7,13 @@
 import requests
 # Uncomment pdb to set debug trace
 import pdb
-from cryptography.fernet import Fernet
-import os
+#from cryptography.fernet import Fernet
+#import os
 import time
 import base64
 import os
 from datetime import datetime, timedelta
+from cryptography.fernet import Fernet
 from urllib3.exceptions import InsecureRequestWarning
 requests.packages.urllib3.disable_warnings(category=InsecureRequestWarning)
 import xml.etree.ElementTree as ET
