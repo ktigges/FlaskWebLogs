@@ -106,7 +106,7 @@ To run the script
     1. Create a Python Virtual Environment for this code
     2. Download the github repository (or the individual files above if you just want this script)
     3. Install the requirements -- pip install -r requirements.txt
-    4. Update your panorama IP in the config.options and set SSL to yes or now
+    4. Update your panorama IP in the config.options and set SSL to yes or no
     5. If using SSL, then make sure you have a cert.pem and cert.key for this app
     6. get your panorama API key (use google to find out how to get this), and place it in the api.txt file (that you need to create)
     6. run python3 ./encrypt_api.py and it will create the api key files needed
