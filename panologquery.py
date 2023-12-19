@@ -22,6 +22,12 @@ import xml.etree.ElementTree as ET
 
 #GLobal Variable
 
+ # Get the settings from the config file
+panorama_ip, local_timezone = get_options()
+
+os.environ['TZ'] = 'America/Denver'
+time.tzset()
+
 reset_values = True
 
 saved_source_ip_address = ""
@@ -62,8 +68,7 @@ def add_headers(response):
 @app.route('/', methods=['GET', 'POST'])
 def index():
    
-    # Get the settings from the config file
-    panorama_ip = get_options()
+   
 
     qform = QueryInputForm()
     global saved_source_ip_address 

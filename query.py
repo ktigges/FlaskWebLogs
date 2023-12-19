@@ -21,12 +21,13 @@ import sys
 
 
 def get_options():
+    #note: format is strict at the moment
     cwd = './'
     #option 1 = panorama_ip
-    #option 2 = ssl_enable
+    #option 2 = Timezone set by same syntax as OS - https://manpages.ubuntu.com/manpages/focal/man3/DateTime::TimeZone::Catalog.3pm.html
     #cwd = '/Users/ktigges/dev/logs-web/'
     panorama_ip = ''
-    ssl_enable = ''
+    local_timezone = ''
     port = ''
     with open(cwd + 'config.options', 'r') as f:
         contents = (f.readline())
@@ -34,9 +35,14 @@ def get_options():
         while (contents[x] != '\n'):
            panorama_ip = panorama_ip + contents[x]
            x = x + 1
-        
+        contents = (f.readline())
+        x = 9
+        while (contents[x] != '\n'):
+            local_timezone = local_timezone + contents[x]
+            x = x + 1
     f.close()    
-    return(panorama_ip)        
+    
+    return(panorama_ip, local_timezone)        
             
             
 
@@ -118,8 +124,9 @@ def query_logs(api_key, panorama_ip, source_ip, destination_ip, start_time, end_
         query += f" and dport eq {dport}"
     
     url = f'https://{panorama_ip}/api/?type=log&log-type=traffic&nlogs=1000&query={query}'
-
+  
     response = requests.post(url, headers = returnheader(api_key), verify=False)
+    print("")
     # Check the API response status as well as the code returned.  19 will be job enqueued, anything else we don't want to run as there is an error
     if (response.status_code == 200 and str(response.content).find('code="19"')) > 0:
         return(response)
@@ -169,6 +176,7 @@ def main(panorama_ip, source_ip, destination_ip, start_time, end_time,  port):
 
        print('Query Queued : Job ID ' + jobid + '\n')
        xml_string = get_status(api_key, panorama_ip, jobid)
+    
        return (xml_string)
        
     except Exception as e:
