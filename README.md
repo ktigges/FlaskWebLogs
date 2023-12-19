@@ -1,3 +1,5 @@
+Updated 12/19/23 - Modified to correct issue with local time zone.  You can now set the timezone preference in config.options
+
 Updated 07/05/23 - Changed form to have source/dest ip addresses, and a date picker with time fields.  Updated query logic to include additional fields
 Update 07/19/23  - Updated logic to allow resetting field values or keeping field values for another query
 
